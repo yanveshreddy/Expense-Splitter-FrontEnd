@@ -1,0 +1,12 @@
+<!-- <app-layout fxLayout="column">
+
+</app-layout> -->
+
+Name: {{expName}}
+amomunt: {{amount}}
+<div >
+  <ul>
+  <li *ngFor = "let u of this.users">
+    <a [routerLink]="['/user/profile']" [queryParams]= "{id: u.userid}" >{{u.socketroom}}</a>
+  </li>
+  </ul>

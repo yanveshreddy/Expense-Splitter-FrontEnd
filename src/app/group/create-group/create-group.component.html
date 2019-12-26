@@ -1,0 +1,51 @@
+<app-layout fxLayout="column"></app-layout>
+<br>
+
+  <section class="sample-app-content">
+    <div class="container">
+
+        <div class="row" style="text-align:left">
+
+            <div class="col-md-12">
+                <h1>Create Group:</h1>
+                <form #createGroupForm="ngForm" (ngSubmit)="createGroup()">
+                    <div class="form-group">
+                        <label>Group Title:</label>
+                        
+                        <input type="text" name="groupTitle" [(ngModel)]="groupTitle" #title="ngModel" class="form-control" placeholder="enter Group title"
+                            required autofocus>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>Group Description:</label>
+                      <input type="text" name="groupDescription" [(ngModel)]="groupDescription" #description="ngModel" class="form-control" placeholder="enter Group Description"
+                          required autofocus>
+                  </div>
+
+
+                    <div class="form-group">
+                      <!-- <mat-label>UsersInvolved:</mat-label>  -->
+                            <mat-form-field class="example-full-width text-capitalize">
+                            <mat-select placeholder="Users:" name="groupUsers" [(ngModel)]="groupUsers" multiple>
+        
+                              <mat-option class="text-capitalize" *ngFor="let user of usersList" [value]="user._id">
+                                <!-- <mat-option class="text-capitalize" *ngFor="let user of users" [value]="user" [disabled]="anotherList.includes(user)"> -->
+                                {{user.firstName}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <br> <br>
+                   
+                    <p>
+                        <button type="submit" [disabled]="!createGroupForm.valid">Submit</button>
+                    </p>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</section>

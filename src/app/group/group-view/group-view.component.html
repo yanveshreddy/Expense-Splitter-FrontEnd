@@ -1,0 +1,17 @@
+
+<!-- <app-layout fxLayout="column"></app-layout> -->
+
+<a [routerLink]="['addexpense']" >create expense</a>
+
+<br>
+<br>
+
+
+
+<div>
+  <ul>
+    <li *ngFor="let u of expenselist" [value]="u.expenseid">
+      <a [routerLink]="['../group/expense']" [queryParams]="{id: u.expenseid, r: u.users[0].socketroom}" routerLinkActive="router-link-active" >{{u.expensename}}</a>
+    </li>
+  </ul>
+</div>

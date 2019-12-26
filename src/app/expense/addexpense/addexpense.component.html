@@ -1,0 +1,84 @@
+<app-layout fxLayout="column">
+
+</app-layout>
+<br>
+<section class="sample-app-content">
+  <div class="container">
+
+    <div class="row" style="text-align:left">
+
+      <div class="col-md-12">
+        <h1>Add Expense:</h1>
+        <form #createExpenseForm="ngForm" (ngSubmit)="createExpense()">
+          <div class="form-expense">
+            <label>Expense Title:</label>
+
+            <input type="text" name="expenseTitle" [(ngModel)]="expenseTitle" #title="ngModel" class="form-control"
+              placeholder="enter expense title" required autofocus>
+          </div>
+          <div class="form-expense">
+            <label>Expense Description:</label>
+            <input type="text" name="expenseDescription" [(ngModel)]="expenseDescription" #description="ngModel"
+              class="form-control" placeholder="enter expense Description" required autofocus>
+          </div>
+          <div class="form-expense">
+            <label>Expense Amount:</label>
+            <input type="number" name="expenseAmount" [(ngModel)]="expenseAmount" #amount="ngModel" class="form-control"
+              placeholder="enter expense Amount(RS)" required autofocus>
+          </div>
+          <br>
+          <div class="col-md-6 ">
+            <div class="form-group" *ngIf="allGroupUsers">
+              <mat-label>PaidBy:</mat-label>
+              <br>
+              <mat-form-field class="example-full-width text-capitalize">
+                <mat-select  name="paidBySelectedUsers" [(ngModel)]="paidBySelectedUsers" multiple>
+  
+                  <mat-option class="text-capitalize" *ngFor="let user of allGroupUsers" [value]="user._id">
+                    <!-- <mat-option class="text-capitalize" *ngFor="let user of users" [value]="user" [disabled]="anotherList.includes(user)"> -->
+                    {{user.firstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <br> <br>
+            <div class="form-group" *ngIf="allGroupUsers">
+              <mat-label>usersInvolved:</mat-label>
+              <br>
+              <mat-form-field class="example-full-width text-capitalize">
+                <mat-select  name="usersInvolvedSelected" [(ngModel)]="usersInvolvedSelected" multiple>
+  
+                  <mat-option class="text-capitalize" *ngFor="let user of allGroupUsers" [value]="user._id">
+                    <!-- <mat-option class="text-capitalize" *ngFor="let user of users" [value]="user" [disabled]="anotherList.includes(user)"> -->
+                    {{user.firstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          
+          </div>
+          <p>
+            <button type="submit" [disabled]="!createExpenseForm.valid">Submit</button>
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- <div>
+  Expense Name: <input type="text" value="" [(ngModel)]="expenseName" placeholder='ex name' />
+  Amount: <input type="text" placeholder='amount' value="" [(ngModel)]="amount" />
+  Amountpaid by: <input type="text" placeholder='amount paid by' value="" [(ngModel)]="amountPaidBy" />
+  created by: <input type="text" [(ngModel)]="createdBy" disabled="true" />
+  Users: <select [(ngModel)]="selectedUsers" multiple>
+    <option *ngFor="let u of allexpenseUsers" [value]="u">
+      {{u}}
+    </option>
+  </select>
+  <input type="submit" (click)="createExpense()" />
+</div> -->
