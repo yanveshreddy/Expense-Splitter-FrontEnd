@@ -2,10 +2,59 @@
 
 </app-layout>
 <br>
-<br>
+
+<div>
 <button class="btn btn-secondary" [routerLink]="['/creategroup']"><i class="fas fa-plus">CreateNewGroup
 </i></button>
-<!-- <a [routerLink] = "['creategroup']" >CreateNewGroup</a> -->
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Outstanding balances</h4>
+    <p class="card-text">Some example text. Some example text.</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+
+<div class="container-fluid" style="margin-top:80px">
+ 
+  <div class="table-responsive" *ngIf="groups">
+    <h2 class="edit">Groups:</h2>
+    <table class="table table-bordered">
+      <thead style="background-color:#33847c;color:white">
+        <tr>
+          <th class="font" style="text-align:center">GroupTitle</th>
+          <th class="font" style="text-align:center">CreatedBy</th>
+          <th class="font" style="text-align:center">noofUsers</th>
+          <th class="font" style="text-align:center">view</th>
+          
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let group of groups | paginate: { itemsPerPage: count, currentPage: p }" class="hover">
+          <td class="font" style="text-align: center">
+            {{group.groupName}}
+          </td>
+          <td class="font" style="text-align:center;">
+            {{group.createdBy.firstName}}
+          </td>
+          <td class="font" style="text-align:center;">
+            {{group.users.length}}
+          </td>
+          <td class="font" style="text-align:center;">
+            <i class="fas fa-eye" style="cursor: pointer;" [routerLink]="['/viewgroup',group.groupId]"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="controller" style="margin-top:20px;float:right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+
 
 <div>
     Groups -

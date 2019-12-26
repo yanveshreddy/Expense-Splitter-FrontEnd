@@ -25,7 +25,7 @@ export class ViewExpenseComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.log(params);
       this.id = params['id'];
-      this.room = params['r'];
+      //this.room = params['r'];
   });
 
     this.getAllUsersForExpense(this.id);

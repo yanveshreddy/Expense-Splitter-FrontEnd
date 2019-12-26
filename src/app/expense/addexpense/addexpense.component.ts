@@ -104,7 +104,7 @@ export class AddexpenseComponent implements OnInit {
       console.log('createexp api response: ' + apiresponse);
       // this.socket.init(apiresponse.users[0].socketroom);
       // this.socket.recvBroadcast();
-      //this.route.navigate(['/group/expense'], { queryParams: { id: this.id, r: apiresponse.users[0].socketroom } });
+      this.route.navigate([`/viewgroup/${this.groupId}`]);
     }
 
     });

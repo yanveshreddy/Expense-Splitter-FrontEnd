@@ -1,0 +1,10 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+.btn-secondary{
+    /* / width:100%; */
+    margin:10px;
+     float: right; 
+    background-color:white;
+    color:black
+    
+   }

@@ -30,7 +30,7 @@ export class GroupViewComponent implements OnInit {
 public getAllExpenseInThisGroup = (groupId) => {
  this.expenseHttpService.getAllExpensesInGroup(groupId).subscribe((apiresponse) => {
   console.log('expenses' + apiresponse);
-  this.expenselist = apiresponse;
+  this.expenselist = apiresponse.data;
 
 });
 }

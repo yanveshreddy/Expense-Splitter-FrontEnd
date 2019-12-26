@@ -5,14 +5,17 @@ import { RouterModule } from '@angular/router';
 import { UserRouteguardService } from '../shared/user-routeguard.service';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
-
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [UserdashboardComponent],
   imports: [
     CommonModule,
     SharedModule,
+    NgxPaginationModule,
+    NgbModalModule,
+    NgbModule,
     RouterModule.forChild([
       { path:'userdashboard',component:UserdashboardComponent,canActivate:[UserRouteguardService]},
      ])

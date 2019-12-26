@@ -15,11 +15,17 @@ export class ExpenseHttpService {
 
 
   constructor(public http: HttpClient) { }
-  public getAllExpensesInGroup(id): Observable<any> {
-    const params = new HttpParams()
-    .set('groupid', id);
-  
-    return this.http.post(`${this.baseurl}/view/all?authToken=${this.authToken}`, params);
+
+  /**
+   * name
+   */
+  public getOutstandingBalances(user_Id1) {
+    let user_Id=JSON.stringify(user_Id1)
+    return this.http.get(`${this.baseurl}/getOutstandingBalances?user_Id=${user_Id}&authToken=${this.authToken}`)
+    
+  }
+  public getAllExpensesInGroup(groupId): Observable<any> {
+    return this.http.get(`${this.baseurl}/view/all?groupId=${groupId}&authToken=${this.authToken}`);
   }
   public createExpense(data): Observable<any> {
 
@@ -39,12 +45,11 @@ export class ExpenseHttpService {
     // console.log('data.users ' + data.users);
     return this.http.post(`${this.baseurl}/createExpense?authToken=${this.authToken}`, params);
   }
-  public getAllUsersForExpense(id): Observable<any> {
+
+  public getAllUsersForExpense(expenseId): Observable<any> {
+
   
-    const params = new HttpParams()
-    .set('expenseId', id);
-  
-    return this.http.post(`${this.baseurl}/:expenseId/getAllUsersForExpense?authToken=${this.authToken}`, params);
+    return this.http.get(`${this.baseurl}/getAllUsersForExpense?expenseId=${expenseId}&authToken=${this.authToken}`);
   }
 
 }
