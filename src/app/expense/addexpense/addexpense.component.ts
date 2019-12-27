@@ -7,13 +7,14 @@ import { expenseData } from 'src/app/shared/expenseData';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SocketService } from 'src/app/socket.service';
 
 
 @Component({
   selector: 'app-addexpense',
   templateUrl: './addexpense.component.html',
   styleUrls: ['./addexpense.component.css'],
-  providers:[CookieService]
+  providers:[SocketService,CookieService]
 })
 export class AddexpenseComponent implements OnInit {
 
@@ -33,15 +34,15 @@ export class AddexpenseComponent implements OnInit {
   public amountLent:number;
   public paidBySelectedUsers: Array<object>;
   public usersInvolvedSelected:Array<object>;
-
+ public userId;
   constructor(public groupHttpService: GroupHttpService, public route: Router, 
               public actRoute: ActivatedRoute, public cookieService: CookieService,
-              public expenseHttpService: ExpenseHttpService,
+              public expenseHttpService: ExpenseHttpService,public socketService:SocketService
              ) { }
 
               
   ngOnInit() {
-
+    this.userId=this.cookieService.get('userId');
     this.groupId=this.actRoute.snapshot.paramMap.get('groupId');
     console.log(this.groupId);
   //   this.actRoute.queryParams.subscribe(params => {
@@ -104,6 +105,15 @@ export class AddexpenseComponent implements OnInit {
       console.log('createexp api response: ' + apiresponse);
       // this.socket.init(apiresponse.users[0].socketroom);
       // this.socket.recvBroadcast();
+      let details={
+        //adminName:this.adminName,
+        userId:this.userId,
+     //   expenseId:this.expenseId,
+        expenseTitle:this.expenseTitle,
+        allGroupUsers:this.allGroupUsers
+    }
+    this.socketService.emitCreateNotification(details);
+ 
       this.route.navigate([`/viewgroup/${this.groupId}`]);
     }
 

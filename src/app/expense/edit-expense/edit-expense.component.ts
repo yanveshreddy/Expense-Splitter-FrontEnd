@@ -7,11 +7,13 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Location } from '@angular/common';
 import { expenseData } from 'src/app/shared/expenseData';
 import { GroupHttpService } from 'src/app/group-http.service';
+import { SocketService } from 'src/app/socket.service';
 
 @Component({
   selector: 'app-edit-expense',
   templateUrl: './edit-expense.component.html',
-  styleUrls: ['./edit-expense.component.css']
+  styleUrls: ['./edit-expense.component.css'],
+  providers:[SocketService]
 })
 export class EditExpenseComponent implements OnInit {
 
@@ -27,6 +29,7 @@ export class EditExpenseComponent implements OnInit {
   public groupId: any;
   public groupName: string;
 
+  public userId;
   public amountSpent: number;
   public amountLent: number;
   public allGroupUsers: any;
@@ -34,9 +37,10 @@ export class EditExpenseComponent implements OnInit {
   public usersInvolvedSelected = [];
 
   constructor(public _route: ActivatedRoute, public router: Router, public expenseHttpService: ExpenseHttpService,
-    public groupHttpService: GroupHttpService, public toastr: ToastrService, public location: Location) { }
+    public groupHttpService: GroupHttpService,  public socketService:SocketService,public toastr: ToastrService, public location: Location) { }
 
   ngOnInit() {
+    this.userId=Cookie.get('userId');
     this.expenseId = this._route.snapshot.paramMap.get('expenseId');
     this.getSingleExpenseDetails(this.expenseId);
   }
@@ -122,12 +126,14 @@ export class EditExpenseComponent implements OnInit {
 
         //   let details={
 
-        //     adminName:this.adminName,
-        //     userId:this.userId,
-        //     meetingId:this.meetingId,
-        //     title:this.title
+        //     //adminName:this.adminName,
+        //     userId:this.expenseId,
+        //     expenseId:this.expenseId,
+        //     expenseTitle:this.expenseTitle,
+        //     allGroupUsers:this.allGroupUsers
+
         // }
-        //console.log(details);
+        // console.log(details);
 
         // if(details){
         //   this.socketService.emitUpdateNotification(details);
@@ -158,12 +164,14 @@ export class EditExpenseComponent implements OnInit {
       data => {
         this.toastr.success(data.message);
         //    let details={
-        //     adminName:this.adminName,
+        //     //adminName:this.adminName,
         //     userId:this.userId,
-        //     meetingId:this.meetingId
+        //     expenseId:this.expenseId,
+        //     expenseTitle:this.expenseTitle,
+        //     allGroupUsers:this.allGroupUsers
         // }
-        //this.socketService.emitDeleteNotification(details);
-        // this.deleteMeetingMailNotification();
+        // this.socketService.emitDeleteNotification(details);
+     
         this.router.navigate(['/userdashboard']);
       },
       err => {
