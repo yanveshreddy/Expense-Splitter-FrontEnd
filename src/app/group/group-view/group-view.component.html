@@ -1,12 +1,48 @@
-
 <app-layout fxLayout="column"></app-layout>
-<br>
+<div class="container" style="margin-top:30px" *ngIf="groupName">
+  <h2 class="title">{{groupName}}</h2>
+  <br>
+  <div class="row">
+    
+    <div class="col-md-4" *ngIf="users">
+     
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Group Users:</h4>
+            <!-- <ul class="list-group list-group-vertical" class="list-group-item"> -->
+            <div *ngFor="let user of users">
+              <li>{{user.firstName}}</li>
+            </div>
+            <!-- </ul> -->
+        </div>
 
-<button class="btn btn-secondary" [routerLink]="['addexpense']"><i class="fas fa-plus">CreateNewExpense
-</i></button>
+      </div>
+    </div>
+    <div class="col-md-4" >
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Group Users:</h4>
+            <!-- <ul class="list-group list-group-vertical" class="list-group-item"> -->
+            <div *ngFor="let user of users">
+              <li>{{user.firstName}}</li>
+            </div>
+            <!-- </ul> -->
+          </div>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-secondary" [routerLink]="['addexpense']"><i class="fas fa-plus">CreateNewExpense
+        </i></button>
+
+    </div>
+
+  </div>
+</div>
+
 
 <div class="container-fluid" style="margin-top:80px">
- 
+
   <div class="table-responsive" *ngIf="expenseList">
     <h2 class="edit">Expenses:</h2>
     <table class="table table-bordered">
@@ -16,7 +52,7 @@
           <th class="font" style="text-align:center">Amount(Rs)</th>
           <th class="font" style="text-align:center">createdBy</th>
           <th class="font" style="text-align:center">view</th>
-          
+
 
         </tr>
       </thead>
@@ -44,14 +80,14 @@
   </div>
 </div>
 
-<a [routerLink]="['addexpense']" >create expense</a>
+<a [routerLink]="['addexpense']">create expense</a>
 
 <br>
 <br>
 <div>
   <ul>
     <li *ngFor="let u of expenselist" [value]="u.expenseid">
-      <a [routerLink]="['expense/u.expenseId']" >{{u.expenseTitle}}</a>
+      <a [routerLink]="['expense/u.expenseId']">{{u.expenseTitle}}</a>
     </li>
   </ul>
 </div>

@@ -27,10 +27,6 @@ export class ViewExpenseComponent implements OnInit {
 
     this.getSingleExpenseDetails(this.expenseId);
     
-    // this.socketService.init(this.room);
-    // this.socketService.recvBroadcast().subscribe((apiresponse) => {
-    //   console.log('apiresponmse: ' + apiresponse);
-    // });
   }
 
   public getSingleExpenseDetails = (expenseId) => {

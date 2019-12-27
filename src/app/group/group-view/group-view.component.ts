@@ -11,6 +11,8 @@ import { GroupHttpService } from 'src/app/group-http.service';
 export class GroupViewComponent implements OnInit {
 
   public groupId: any;
+  public groupName;
+  public users=[];
   public expenseList=[];
   constructor(private actRoute: ActivatedRoute, private expenseHttpService: ExpenseHttpService,private groupHttpService:GroupHttpService) { }
 
@@ -21,10 +23,20 @@ export class GroupViewComponent implements OnInit {
   //     console.log(params);
   //     this.groupId = params['groupId'];
   // });
-   
+    this.getSingleGroupDetails(this.groupId)
     this.getAllExpenseInThisGroup(this.groupId);
   }
 
+  public getSingleGroupDetails = (groupId) => {
+    this.groupHttpService.getSingleGroupDetails(groupId).subscribe((apiresponse) => {
+     //console.log('expenses' + apiresponse.data);
+     this.groupName = apiresponse.data.groupName;
+     this.users=apiresponse.data.users;
+     console.log(this.users)
+   
+   });
+   }
+   
   
 
 public getAllExpenseInThisGroup = (groupId) => {
