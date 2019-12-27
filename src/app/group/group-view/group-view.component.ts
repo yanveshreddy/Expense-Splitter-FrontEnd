@@ -11,16 +11,16 @@ import { GroupHttpService } from 'src/app/group-http.service';
 export class GroupViewComponent implements OnInit {
 
   public groupId: any;
-  public expenselist: any;
-  constructor(private route: ActivatedRoute, private expenseHttpService: ExpenseHttpService,private groupHttpService:GroupHttpService) { }
+  public expenseList=[];
+  constructor(private actRoute: ActivatedRoute, private expenseHttpService: ExpenseHttpService,private groupHttpService:GroupHttpService) { }
 
   ngOnInit() {
-   
+    this.groupId=this.actRoute.snapshot.paramMap.get('groupId');
 
-    this.route.queryParams.subscribe(params => {
-      console.log(params);
-      this.groupId = params['groupId'];
-  });
+  //   this.route.queryParams.subscribe(params => {
+  //     console.log(params);
+  //     this.groupId = params['groupId'];
+  // });
    
     this.getAllExpenseInThisGroup(this.groupId);
   }
@@ -29,8 +29,8 @@ export class GroupViewComponent implements OnInit {
 
 public getAllExpenseInThisGroup = (groupId) => {
  this.expenseHttpService.getAllExpensesInGroup(groupId).subscribe((apiresponse) => {
-  console.log('expenses' + apiresponse);
-  this.expenselist = apiresponse.data;
+  console.log('expenses' + apiresponse.data);
+  this.expenseList = apiresponse.data;
 
 });
 }

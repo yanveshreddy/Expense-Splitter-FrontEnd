@@ -25,7 +25,7 @@ export class ExpenseHttpService {
     
   }
   public getAllExpensesInGroup(groupId): Observable<any> {
-    return this.http.get(`${this.baseurl}/view/all?groupId=${groupId}&authToken=${this.authToken}`);
+    return this.http.get(`${this.baseurl}/${groupId}/view/all?authToken=${this.authToken}`);
   }
   public createExpense(data): Observable<any> {
 

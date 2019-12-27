@@ -11,9 +11,9 @@ export class ViewExpenseComponent implements OnInit {
 
   public id: any;
   public users = [];
-  public expName: any;
-  public amount: any;
-  public room: any;
+  public expenseName: any;
+  public expenseAmount: any;
+  
 
   constructor(private route: ActivatedRoute, 
     private expenseHttpService: ExpenseHttpService,)
@@ -40,8 +40,8 @@ export class ViewExpenseComponent implements OnInit {
     this.expenseHttpService.getAllUsersForExpense(id).subscribe((apiresponse) => {
       console.log('apiresponseuserofexp: ' + apiresponse.users[0].socketroom);
       this.users = apiresponse.users;
-      this.amount  = apiresponse.amount;
-      this.expName  = apiresponse.expensename;
+      this.expenseAmount  = apiresponse.amount;
+      this.expenseName  = apiresponse.expensename;
     //  console.log('users: ' + this.users);
     });
   }

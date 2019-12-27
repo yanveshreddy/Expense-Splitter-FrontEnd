@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import {MatSelectModule} from '@angular/material';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [CreateGroupComponent, UpdateGroupComponent, GroupViewComponent],
@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material';
     FormsModule,
     SharedModule,
     MatSelectModule,
+    NgxPaginationModule,
     // AppRoutingModule,
     RouterModule.forChild([
       {path:'viewgroup/:groupId',component:GroupViewComponent,canActivate:[UserRouteguardService]},
