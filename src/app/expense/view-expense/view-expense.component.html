@@ -1,9 +1,25 @@
 <app-layout fxLayout="column">
 
 </app-layout>
-<div>
-Name: {{expenseName}}
-amomunt: {{expenseAmount}}
+<br>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> {{expenseName}}</h4>
+      <!-- <ul class="list-group list-group-vertical" class="list-group-item"> -->
+        <div class="row">
+        <div class="col-md-8">
+        <li>Rs{{expenseAmount}}</li>
+      </div>
+        <div class="col-md-4">
+          <button class="btn btn-secondary" [routerLink]="['edit']"><i class="fas fa-edit">EditExpense
+            </i></button>
+    
+        </div>
+    </div>
+      <!-- </ul> -->
+  </div>
+
+</div>
 
 <div class="container-fluid" style="margin-top:80px">
 

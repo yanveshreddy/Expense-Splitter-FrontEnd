@@ -36,6 +36,8 @@ export class ViewExpenseComponent implements OnInit {
       //this.users = apiresponse.data.users;
       this.expenseData=apiresponse.data;
       let array1=apiresponse.data.paidBy;
+
+      console.log("anvesh paidBy:"+JSON.stringify(array1))
       array1.forEach(element => {
         this.paidByUsers.push({'userName':element.user.firstName,'amountLent':element.amountLent})
       });

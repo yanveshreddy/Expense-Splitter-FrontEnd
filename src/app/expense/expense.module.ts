@@ -30,6 +30,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
       path: 'viewgroup/:groupId/expense/:expenseId',
       component: ViewExpenseComponent,
       canActivate:[UserRouteguardService]
+    },
+    {
+      path: 'viewgroup/:groupId/expense/:expenseId/edit',
+      component: EditExpenseComponent,
+      canActivate:[UserRouteguardService]
     }
   ])
     

@@ -28,7 +28,7 @@ export class ExpenseHttpService {
     return this.http.get(`${this.baseurl}/${groupId}/view/all?authToken=${this.authToken}`);
   }
   public createExpense(data): Observable<any> {
-
+    
     let paidByArray=JSON.stringify(data.paidBy);
     let usersInvolvedArray=JSON.stringify(data.usersInvolved);
   
@@ -46,10 +46,29 @@ export class ExpenseHttpService {
     return this.http.post(`${this.baseurl}/createExpense?authToken=${this.authToken}`, params);
   }
 
+  public updateExpense(data):Observable<any> {
+
+    let paidByArray=JSON.stringify(data.paidBy);
+    let usersInvolvedArray=JSON.stringify(data.usersInvolved);
+  
+    const params = new HttpParams()
+    .set('expenseTitle', data.expenseTitle )
+    .set('expenseDescription', data.expenseDescription)
+    .set('expenseAmount', data.expenseAmount)
+    .set('paidBy', paidByArray)
+    .set('usersInvolved', usersInvolvedArray);
+
+    return this.http.put(`${this.baseurl}/${data.expenseId}/updateExpense?authToken=${this.authToken}`, params);
+  }
   public getSingleExpenseDetails(expenseId): Observable<any> {
 
   
     return this.http.get(`${this.baseurl}/${expenseId}/details?authToken=${this.authToken}`);
+  }
+  public deleteExpense(expenseId):Observable<any> { 
+    let params=new HttpParams()
+    .set('expenseId',expenseId)
+    return this.http.post(`${this.baseurl}/${expenseId}/deleteExpense?authToken=${this.authToken}`,params)
   }
 
 }
