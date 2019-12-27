@@ -1,40 +1,78 @@
 <app-layout fxLayout="column">
 
 </app-layout>
-
+<div>
 Name: {{expenseName}}
 amomunt: {{expenseAmount}}
 
 <div class="container-fluid" style="margin-top:80px">
- 
-  <div class="table-responsive" *ngIf="expenseList">
-    <h2 class="edit">Expenses:</h2>
+
+  <div class="table-responsive" *ngIf="paidByUsers">
+    <h2 class="edit">AmountLent Details:</h2>
     <table class="table table-bordered">
       <thead style="background-color:#33847c;color:white">
         <tr>
-          <th class="font" style="text-align:center">ExpenseName</th>
-          <th class="font" style="text-align:center">Amount(Rs)</th>
-          <th class="font" style="text-align:center">createdBy</th>
+          <th class="font" style="text-align:center">UserName</th>
+          <th class="font" style="text-align:center">Amount Lent(Rs)</th>
+          <!-- <th class="font" style="text-align:center">createdBy</th>
           <th class="font" style="text-align:center">view</th>
-          
+           -->
 
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let expense of expenseList | paginate: { itemsPerPage: count, currentPage: p }" class="hover">
+        <tr *ngFor="let ele of paidByUsers | paginate: { itemsPerPage: count, currentPage: p }" class="hover">
           <td class="font" style="text-align: center">
-            {{expense.expenseTitle}}
+            {{ele.userName}}
           </td>
           <td class="font" style="text-align:center;">
-            {{expense.expenseAmount}}
+            {{ele.amountLent}}
           </td>
-          <td class="font" style="text-align:center;">
+          <!-- <td class="font" style="text-align:center;">
             {{expense.createdBy.firstName}}
           </td>
           <td class="font" style="text-align:center;">
             <i class="fas fa-eye" style="cursor: pointer;" [routerLink]="['expense',expense.expenseId]"></i>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+    <div class="controller" style="margin-top:20px;float:right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top:80px">
+
+  <div class="table-responsive" *ngIf="spentByUsers">
+    <h2 class="edit">AmountSpent Details:</h2>
+    <table class="table table-bordered">
+      <thead style="background-color:#33847c;color:white">
+        <tr>
+          <th class="font" style="text-align:center">UserName</th>
+          <th class="font" style="text-align:center">Amount Spent(Rs)</th>
+          <!-- <th class="font" style="text-align:center">createdBy</th>
+          <th class="font" style="text-align:center">view</th>
+           -->
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let ele of spentByUsers | paginate: { itemsPerPage: count, currentPage: p }" class="hover">
+          <td class="font" style="text-align: center">
+            {{ele.userName}}
           </td>
+          <td class="font" style="text-align:center;">
+            {{ele.amountSpent}}
+          </td>
+          <!-- <td class="font" style="text-align:center;">
+            {{expense.createdBy.firstName}}
+          </td>
+          <td class="font" style="text-align:center;">
+            <i class="fas fa-eye" style="cursor: pointer;" [routerLink]="['expense',expense.expenseId]"></i>
+          </td> -->
         </tr>
       </tbody>
     </table>
@@ -44,10 +82,11 @@ amomunt: {{expenseAmount}}
   </div>
 </div>
 
-
-<div >
+<div>
   <ul>
-  <li *ngFor = "let u of this.users">
-    <a [routerLink]="['/user/profile']" [queryParams]= "{id: u.userid}" >{{u.socketroom}}</a>
-  </li>
+    <li *ngFor="let u of this.users">
+      <a [routerLink]="['/user/profile']" [queryParams]="{id: u.userid}">{{u.socketroom}}</a>
+    </li>
   </ul>
+
+  

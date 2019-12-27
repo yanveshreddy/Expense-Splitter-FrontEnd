@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { UserRouteguardService } from '../shared/user-routeguard.service';
 import {MatSelectModule} from '@angular/material';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [AddexpenseComponent, EditExpenseComponent, ViewExpenseComponent],
@@ -18,6 +18,7 @@ import {MatSelectModule} from '@angular/material';
     CommonModule,
     FormsModule,
     SharedModule,
+    NgxPaginationModule,
     MatSelectModule,
     RouterModule.forChild([
       {
