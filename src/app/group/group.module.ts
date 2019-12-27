@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CreateGroupComponent } from './create-group/create-group.component';
-import { UpdateGroupComponent } from './update-group/update-group.component';
+//import { UpdateGroupComponent } from './update-group/update-group.component';
 import { UserRouteguardService } from '../shared/user-routeguard.service';
 import { RouterModule } from '@angular/router';
 
@@ -14,7 +14,7 @@ import {MatSelectModule} from '@angular/material';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
-  declarations: [CreateGroupComponent, UpdateGroupComponent, GroupViewComponent],
+  declarations: [CreateGroupComponent, GroupViewComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,7 +25,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     RouterModule.forChild([
       {path:'viewgroup/:groupId',component:GroupViewComponent,canActivate:[UserRouteguardService]},
       { path:'creategroup',component:CreateGroupComponent,canActivate:[UserRouteguardService]},
-      { path:'updategroup/:groupId',component:CreateGroupComponent,canActivate:[UserRouteguardService]}
+      // { path:'updategroup/:groupId',component:CreateGroupComponent,canActivate:[UserRouteguardService]}
      ])
   ]
 })

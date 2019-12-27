@@ -9,7 +9,7 @@
 <div class="card">
   <div class="card-body">
     <h4 class="card-title">Outstanding balances</h4>
-    <p class="card-text">Some example text. Some example text.</p>
+    <p class="card-text"></p>
     <!-- <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a> -->
   </div>
@@ -55,30 +55,5 @@
 </div>
 
 
-
-<div>
-    Groups -
-  
-    1 your groups
-    2 see all groups
-    3 open group link - get users info and description and name of that group.
-  
-    User -
-    1 open user profile link
-    2
-  </div>
-  
-  <div *ngIf=groups>
-    Your Groups
-  
-  <ul>
-    <li *ngFor = "let u of groups" >
-      <a [routerLink] = "['/viewgroup',u.groupId]">
-      {{u.groupName}}
-    </a>
-    </li>
-  </ul>
-  
-  </div>
 
   <router-outlet></router-outlet>
