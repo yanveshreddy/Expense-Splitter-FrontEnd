@@ -105,14 +105,14 @@ export class AddexpenseComponent implements OnInit {
       console.log('createexp api response: ' + apiresponse);
       // this.socket.init(apiresponse.users[0].socketroom);
       // this.socket.recvBroadcast();
-      let details={
-        //adminName:this.adminName,
-        userId:this.userId,
-     //   expenseId:this.expenseId,
-        expenseTitle:this.expenseTitle,
-        allGroupUsers:this.allGroupUsers
-    }
-    this.socketService.emitCreateNotification(details);
+    //   let details={
+    //     //adminName:this.adminName,
+    //     userId:this.userId,
+    //  //   expenseId:this.expenseId,
+    //     expenseTitle:this.expenseTitle,
+    //     allGroupUsers:this.allGroupUsers
+    // }
+    // this.socketService.emitCreateNotification(details);
  
       this.route.navigate([`/viewgroup/${this.groupId}`]);
     }
