@@ -19,11 +19,17 @@ export class ExpenseHttpService {
   /**
    * name
    */
-  public getOutstandingBalances(user_Id) {
-   // let user_Id=JSON.stringify(user_Id)
-    return this.http.get(`${this.baseurl}/${user_Id}/getOutstandingBalances?authToken=${this.authToken}`)
+  public getUserOutstandingLent(user_Id) {
+    //let user_Id=JSON.stringify(user_Id1)
+    return this.http.get(`${this.baseurl}/${user_Id}/getUserOutstandingLent?authToken=${this.authToken}`)
     
   }
+  public getUserOutstandingSpent(user_Id) {
+    //let user_Id=JSON.stringify(user_Id1)
+    return this.http.get(`${this.baseurl}/${user_Id}/getUserOutstandingSpent?authToken=${this.authToken}`)
+    
+  }
+
   public getAllExpensesInGroup(groupId): Observable<any> {
     return this.http.get(`${this.baseurl}/${groupId}/view/all?authToken=${this.authToken}`);
   }

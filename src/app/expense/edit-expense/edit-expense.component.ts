@@ -110,14 +110,14 @@ export class EditExpenseComponent implements OnInit {
     });
 
 
-    const expenseData = {
+
      
-      expenseTitle: this.expenseTitle,
-      expenseDescription: this.expenseDescription,
-      expenseAmount: this.expenseAmount,
-      paidBy: this.paidBy,
-      usersInvolved: this.usersInvolved
-    };
+      this.expenseData.expenseTitle= this.expenseTitle,
+      this.expenseData.expenseDescription= this.expenseDescription,
+      this.expenseData.expenseAmount= this.expenseAmount,
+      this.expenseData.paidBy= this.paidBy,
+      this.expenseData.usersInvolved= this.usersInvolved
+    
 
     this.expenseHttpService.updateExpense(this.expenseData).subscribe(
       data => {

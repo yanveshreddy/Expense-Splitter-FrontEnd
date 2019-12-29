@@ -15,7 +15,10 @@ export class UserdashboardComponent implements OnInit {
   public userInfo: any;
   public groups: [];
   //public routerLinkVariable = '../creategroup';
-  public user_Id
+  public user_Id;
+
+  public totalAmountLent:any;
+  public totalAmountSpent:any;
 
   constructor(public GroupHttpService: GroupHttpService, public expenseHttpService:ExpenseHttpService,public cookie: CookieService) {
 
@@ -23,28 +26,39 @@ export class UserdashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user_Id = this.cookie.get('_id');
-    this.getOutstandingBalances();
+    this.getUserOutstandingLent();
+    this.getUserOutstandingSpent();
     this.getAllGroupsForUser();
   }
 
-  public getOutstandingBalances=() =>{
+  public getUserOutstandingLent=() =>{
 
-      this.expenseHttpService.getOutstandingBalances(this.user_Id).subscribe((apiresponse)=>{
-        console.log('apiresponse: ' + apiresponse);
+      this.expenseHttpService.getUserOutstandingLent(this.user_Id).subscribe((apiResponse:any)=>{
+        console.log('apiResponse: ' + JSON.stringify(apiResponse.data.totalAmountSpent) );
+
+        this.totalAmountLent=apiResponse.data[0].totalAmountLent;
+
 
       })
   }
+  public getUserOutstandingSpent=() =>{
 
+    this.expenseHttpService.getUserOutstandingSpent(this.user_Id).subscribe((apiResponse:any)=>{
+      console.log('apiResponse: ' + apiResponse.data.totalAmountSpent);
+      this.totalAmountSpent=apiResponse.data[0].totalAmountSpent;
+
+    })
+}
 
   public getAllGroupsForUser = () => {
 
     
-    console.log('userId: ' + this.user_Id);
+    console.log('user_Id: ' + this.user_Id);
 
-    this.GroupHttpService.getAllGroupsForaUser(this.user_Id).subscribe((apiresponse) => {
-      console.log('apiresponse: ' + apiresponse);
+    this.GroupHttpService.getAllGroupsForaUser(this.user_Id).subscribe((apiResponse) => {
+      console.log('apiResponse: ' + apiResponse);
       
-      this.groups = apiresponse.data;
+      this.groups = apiResponse.data;
       console.log('groups: ' + this.groups);
 
       

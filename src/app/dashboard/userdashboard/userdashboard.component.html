@@ -7,11 +7,10 @@
 <button class="btn btn-secondary" [routerLink]="['/creategroup']"><i class="fas fa-plus">CreateNewGroup
 </i></button>
 <div class="card">
-  <div class="card-body">
+  <div class="card-body"  *ngIf="totalAmountLent">
     <h4 class="card-title">Outstanding balances</h4>
-    <p class="card-text"></p>
-    <!-- <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> -->
+    <p class="card-text">TotalAmountLent:{{totalAmountLent}} </p>
+    <p class="card-text">TotalAmountSpent:{{totalAmountSpent}}</p>
   </div>
 </div>
 
