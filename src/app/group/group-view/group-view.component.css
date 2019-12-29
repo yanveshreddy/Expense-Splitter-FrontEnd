@@ -12,3 +12,15 @@
     color:black
     
    }
+   .groupUser{
+    font: 900;
+    color: rgb(9, 132, 136);
+   }
+   .lent{
+       font: 900;
+       color: rgb(4, 18, 78);
+   }
+   .spent{
+    font: 900;
+    color: rgb(235, 13, 13);
+   }

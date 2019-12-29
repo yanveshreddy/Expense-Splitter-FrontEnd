@@ -48,4 +48,12 @@ public authToken = Cookie.get('authToken');
   return this.http.get(`${this.baseurl}/getAllGroupsForaUser?userId=${userId}&authToken=${this.authToken}`);
   }
 
+  public groupOutstandingLent(groupId):Observable<any> {
+    return this.http.get(`${this.baseurl}/${groupId}/groupOutstandingLent?authToken=${this.authToken}`);
+  }
+  public groupOutstandingSpent(groupId):Observable<any> {
+    return this.http.get(`${this.baseurl}/${groupId}/groupOutstandingSpent?authToken=${this.authToken}`);
+  }
+ 
+  
 }

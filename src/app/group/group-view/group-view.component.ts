@@ -13,6 +13,8 @@ export class GroupViewComponent implements OnInit {
   public groupId: any;
   public groupName;
   public users=[];
+  public lentArray=[];
+  public spentArray=[];
   public expenseList=[];
   constructor(private actRoute: ActivatedRoute, private expenseHttpService: ExpenseHttpService,private groupHttpService:GroupHttpService) { }
 
@@ -25,7 +27,29 @@ export class GroupViewComponent implements OnInit {
   // });
     this.getSingleGroupDetails(this.groupId)
     this.getAllExpenseInThisGroup(this.groupId);
+   this.groupOutstandingLent(this.groupId)
+   this.groupOutstandingSpent(this.groupId)
   }
+
+
+  public groupOutstandingLent=(groupId) =>{
+    this.groupHttpService.groupOutstandingLent(groupId).subscribe((apiresponse) => {
+      //console.log('expenses' + apiresponse.data);
+     // this.groupName = apiresponse.data.groupName;
+      this.lentArray=apiresponse.data;
+      console.log("lent"+JSON.stringify(this.lentArray))
+    });
+  }
+  public groupOutstandingSpent=(groupId) =>{
+    this.groupHttpService.groupOutstandingSpent(groupId).subscribe((apiresponse) => {
+      //console.log('expenses' + apiresponse.data);
+     // this.groupName = apiresponse.data.groupName;
+      this.spentArray=apiresponse.data;
+      console.log("spent"+this.spentArray)
+    });
+  }
+
+
 
   public getSingleGroupDetails = (groupId) => {
     this.groupHttpService.getSingleGroupDetails(groupId).subscribe((apiresponse) => {

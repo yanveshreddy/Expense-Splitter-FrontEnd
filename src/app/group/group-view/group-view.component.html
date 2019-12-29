@@ -3,83 +3,91 @@
   <h2 class="title">{{groupName}}</h2>
   <br>
   <div class="row">
-    
-    <div class="col-md-4" *ngIf="users">
-     
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Group Users:</h4>
-            <!-- <ul class="list-group list-group-vertical" class="list-group-item"> -->
-            <div *ngFor="let user of users">
-              <li>{{user.firstName}}</li>
-            </div>
-            <!-- </ul> -->
+
+    <div class="col-md-3" *ngIf="users">
+
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Group Users: </div>
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text" *ngFor="let user of users">{{user.firstName}}</p>
         </div>
+      </div>
 
+    </div>
+
+    <div class="col-md-3" *ngIf="lentArray">
+
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Amount Lent : </div>
+        <div class="card-body">
+          <h5 class="card-title">Total Amount Paid By</h5>
+          <p class="card-text" *ngFor="let k of lentArray">{{k.user[0].firstName}}: Rs {{k.totalAmountLent}}</p>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-md-3" *ngIf="spentArray">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Amount Spent : </div>
+        <div class="card-body">
+          <h5 class="card-title">Total Expenditure Of</h5>
+          <p class="card-text" *ngFor="let k of spentArray">{{k.user[0].firstName}}: Rs {{k.totalAmountSpent}}</p>
+        </div>
       </div>
     </div>
-    <div class="col-md-4" >
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Group Users:</h4>
-            <!-- <ul class="list-group list-group-vertical" class="list-group-item"> -->
-            <div *ngFor="let user of users">
-              <li>{{user.firstName}}</li>
-            </div>
-            <!-- </ul> -->
-          </div>
 
-      </div>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <button class="btn btn-secondary" [routerLink]="['addexpense']"><i class="fas fa-plus">CreateNewExpense
         </i></button>
 
     </div>
 
+
   </div>
-</div>
 
 
-<div class="container-fluid" style="margin-top:80px">
+  <div class="container-fluid" style="margin-top:80px">
 
-  <div class="table-responsive" *ngIf="expenseList">
-    <h2 class="edit">Expenses:</h2>
-    <table class="table table-bordered">
-      <thead style="background-color:#33847c;color:white">
-        <tr>
-          <th class="font" style="text-align:center">ExpenseName</th>
-          <th class="font" style="text-align:center">Amount(Rs)</th>
-          <th class="font" style="text-align:center">createdBy</th>
-          <th class="font" style="text-align:center">view</th>
+    <div class="table-responsive" *ngIf="expenseList">
+      <h2 class="edit">Expenses:</h2>
+      <table class="table table-bordered">
+        <thead style="background-color:#33847c;color:white">
+          <tr>
+            <th class="font" style="text-align:center">ExpenseName</th>
+            <th class="font" style="text-align:center">Amount(Rs)</th>
+            <th class="font" style="text-align:center">createdBy</th>
+            <th class="font" style="text-align:center">view</th>
 
 
-        </tr>
-      </thead>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr *ngFor="let expense of expenseList | paginate: { itemsPerPage: count, currentPage: p }" class="hover">
-          <td class="font" style="text-align: center">
-            {{expense.expenseTitle}}
-          </td>
-          <td class="font" style="text-align:center;">
-            {{expense.expenseAmount}}
-          </td>
-          <td class="font" style="text-align:center;">
-            {{expense.createdBy.firstName}}
-          </td>
-          <td class="font" style="text-align:center;">
-            <i class="fas fa-eye" style="cursor: pointer;" [routerLink]="['expense',expense.expenseId]"></i>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="controller" style="margin-top:20px;float:right">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <tbody>
+          <tr *ngFor="let expense of expenseList | paginate: { itemsPerPage: count, currentPage: p }" class="hover">
+            <td class="font" style="text-align: center">
+              {{expense.expenseTitle}}
+            </td>
+            <td class="font" style="text-align:center;">
+              {{expense.expenseAmount}}
+            </td>
+            <td class="font" style="text-align:center;">
+              {{expense.createdBy.firstName}}
+            </td>
+            <td class="font" style="text-align:center;">
+              <i class="fas fa-eye" style="cursor: pointer;" [routerLink]="['expense',expense.expenseId]"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="controller" style="margin-top:20px;float:right">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
     </div>
   </div>
-</div>
-<!-- 
+  <!-- 
 <a [routerLink]="['addexpense']">create expense</a>
 
 <br>

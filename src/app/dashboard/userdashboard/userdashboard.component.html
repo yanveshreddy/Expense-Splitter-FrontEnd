@@ -3,16 +3,36 @@
 </app-layout>
 <br>
 
-<div>
-<button class="btn btn-secondary" [routerLink]="['/creategroup']"><i class="fas fa-plus">CreateNewGroup
-</i></button>
-<div class="card">
-  <div class="card-body"  *ngIf="totalAmountLent">
-    <h4 class="card-title">Outstanding balances</h4>
-    <p class="card-text">TotalAmountLent:{{totalAmountLent}} </p>
-    <p class="card-text">TotalAmountSpent:{{totalAmountSpent}}</p>
+<div  class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-4" *ngIf="totalAmountLent">
+
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Amount Lent : </div>
+        <div class="card-body">
+          <h5 class="card-title">Total Amount Paid</h5>
+          <p class="card-text">Rs {{totalAmountLent}}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-4" *ngIf="totalAmountSpent">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Amount Spent : </div>
+        <div class="card-body">
+          <h5 class="card-title">Total Expenditure</h5>
+          <p class="card-text">Rs {{totalAmountSpent}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+
+      <button class="btn btn-secondary" [routerLink]="['/creategroup']"><i class="fas fa-plus">CreateNewGroup
+      </i></button>
+
+    </div>
   </div>
-</div>
 
 <div class="container-fluid" style="margin-top:80px">
  

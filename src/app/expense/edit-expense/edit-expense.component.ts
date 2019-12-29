@@ -96,10 +96,12 @@ export class EditExpenseComponent implements OnInit {
 
     this.amountLent = this.expenseAmount / noOfPaidUsers;
 
+    console.log("jjjjjjjjjjjjjjjjjjj"+this.paidBySelectedUsers)
     this.paidBySelectedUsers.forEach(element => {
       this.paidBy.push({ user: element, amountLent: this.amountLent })
     });
 
+    console.log("kkkkkkkkkkkkkkkkk"+this.paidBy);
 
     let noOfUsersInvolved = this.usersInvolvedSelected.length;
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GroupHttpService } from 'src/app/group-http.service';
 import { CookieService } from 'ng2-cookies';
 import { ExpenseHttpService } from 'src/app/expense-http.service';
+import { SplitInterpolation } from '@angular/compiler';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class UserdashboardComponent implements OnInit {
 
   public totalAmountLent:any;
   public totalAmountSpent:any;
+  public outStandingDisplay:any;
 
   constructor(public GroupHttpService: GroupHttpService, public expenseHttpService:ExpenseHttpService,public cookie: CookieService) {
 
@@ -26,9 +28,11 @@ export class UserdashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user_Id = this.cookie.get('_id');
+
     this.getUserOutstandingLent();
     this.getUserOutstandingSpent();
     this.getAllGroupsForUser();
+
   }
 
   public getUserOutstandingLent=() =>{

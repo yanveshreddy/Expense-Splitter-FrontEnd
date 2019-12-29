@@ -2,22 +2,25 @@
 
 </app-layout>
 <br>
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title"> {{expenseName}}</h4>
-      <!-- <ul class="list-group list-group-vertical" class="list-group-item"> -->
-        <div class="row">
-        <div class="col-md-8">
-        <li>Rs{{expenseAmount}}</li>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-6">
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+
+        <div class="card-header">Expense Details </div>
+        <div class="card-body">
+          <h4 class="card-title">{{expenseName}}</h4>
+          <p class="card-text">Total Amount: Rs{{expenseAmount}}</p>
+        </div>
+
       </div>
-        <div class="col-md-4">
+    </div>
+        <div class="col-md-2">
           <button class="btn btn-secondary" [routerLink]="['edit']"><i class="fas fa-edit">EditExpense
             </i></button>
     
         </div>
-    </div>
-      <!-- </ul> -->
-  </div>
+    
 
 </div>
 
