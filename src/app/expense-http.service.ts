@@ -77,4 +77,8 @@ export class ExpenseHttpService {
     return this.http.post(`${this.baseurl}/${expenseId}/deleteExpense?authToken=${this.authToken}`,params)
   }
 
+  public getExpenseHistory(expenseId):Observable<any> { 
+    
+    return this.http.get(`${this.baseurl}/${expenseId}/getExpenseHistory?authToken=${this.authToken}`)
+  }
 }

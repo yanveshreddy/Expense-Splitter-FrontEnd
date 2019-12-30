@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExpenseHttpService } from 'src/app/expense-http.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-view-expense',
   templateUrl: './view-expense.component.html',
@@ -15,10 +15,10 @@ export class ViewExpenseComponent implements OnInit {
   public expenseData;
   public expenseName: any;
   public expenseAmount: any;
-  
+  public expenseHistoryData;
 
   constructor(private actRoute: ActivatedRoute, 
-    private expenseHttpService: ExpenseHttpService,)
+    private expenseHttpService: ExpenseHttpService,public location: Location)
      { }
 
 
@@ -26,8 +26,21 @@ export class ViewExpenseComponent implements OnInit {
     this.expenseId=this.actRoute.snapshot.paramMap.get('expenseId');
 
     this.getSingleExpenseDetails(this.expenseId);
+
+    this.getExpenseHistory(this.expenseId);
     
   }
+  public getExpenseHistory=(expenseId) =>{
+
+    this.expenseHttpService.getExpenseHistory(expenseId).subscribe((apiresponse) => {
+
+      this.expenseHistoryData=apiresponse.data;
+
+      console.log("skfjskfkfj"+ JSON.stringify(this.expenseHistoryData))
+
+  }
+    )}
+
 
   public getSingleExpenseDetails = (expenseId) => {
 
@@ -55,5 +68,7 @@ export class ViewExpenseComponent implements OnInit {
     //  console.log('users: ' + this.users);
     });
   }
-
+  public goBack() {
+    this.location.back();
+  }
 }
