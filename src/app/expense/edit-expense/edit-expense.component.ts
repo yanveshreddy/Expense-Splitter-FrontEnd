@@ -37,7 +37,8 @@ export class EditExpenseComponent implements OnInit {
   public usersInvolvedSelected = [];
 
   constructor(public _route: ActivatedRoute, public router: Router, public expenseHttpService: ExpenseHttpService,
-    public groupHttpService: GroupHttpService,  public socketService:SocketService,public toastr: ToastrService, public location: Location) { }
+    public groupHttpService: GroupHttpService, 
+     public socketService:SocketService,public toastr: ToastrService, public location: Location) { }
 
   ngOnInit() {
     this.userId=Cookie.get('userId');
