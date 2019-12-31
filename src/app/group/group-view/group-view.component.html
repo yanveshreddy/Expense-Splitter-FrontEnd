@@ -1,50 +1,87 @@
 <app-layout fxLayout="column"></app-layout>
+<br>
 <div class="container" style="margin-top:30px" *ngIf="groupName">
-  <h2 class="title">{{groupName}}</h2>
+  <div class="row" style="background-color:rgb(5, 59, 80)">
+    <div class="col-md-10">
+      <h2 class="title">{{groupName}}</h2>
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn btn-secondary" [routerLink]="['addexpense']"><i class="fas fa-plus">CreateNewExpense
+        </i></button>
+    </div>
+  </div>
   <br>
+
   <div class="row">
+    <div class="col-md-10">
 
-    <div class="col-md-3" *ngIf="users">
+      <div class="row">
 
-      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header">Group Users: </div>
-        <div class="card-body">
-          <h5 class="card-title">Users</h5>
-          <p class="card-text" *ngFor="let user of users">{{user.firstName}}</p>
+        <div class="col-md-4" *ngIf="lentArray">
+
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Amount Lent : </div>
+            <div class="card-body">
+              <h5 class="card-title">Total Amount Paid By</h5>
+              <p class="card-text" *ngFor="let k of lentArray">{{k.user[0].firstName}}: Rs {{k.totalAmountLent}}</p>
+            </div>
+          </div>
+
+
         </div>
+
+        <div class="col-md-4" *ngIf="spentArray">
+          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">Amount Spent : </div>
+            <div class="card-body">
+              <h5 class="card-title">Total Expenditure Of</h5>
+              <p class="card-text" *ngFor="let k of spentArray">{{k.user[0].firstName}}: Rs {{k.totalAmountSpent}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" *ngIf="spentArray">
+
+          <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Group Summary: </div>
+            <div class="card-body">
+              <h5 class="card-title">Total Expenditure of Group</h5>
+              <p class="card-text" *ngIf="totalExpOfGroup">Rs {{totalExpOfGroup}}</p>
+            </div>
+          </div>
+
+        </div>
+
+
       </div>
 
-    </div>
-
-    <div class="col-md-3" *ngIf="lentArray">
-
-      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">Amount Lent : </div>
-        <div class="card-body">
-          <h5 class="card-title">Total Amount Paid By</h5>
-          <p class="card-text" *ngFor="let k of lentArray">{{k.user[0].firstName}}: Rs {{k.totalAmountLent}}</p>
-        </div>
-      </div>
 
 
     </div>
-
-    <div class="col-md-3" *ngIf="spentArray">
-      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-        <div class="card-header">Amount Spent : </div>
-        <div class="card-body">
-          <h5 class="card-title">Total Expenditure Of</h5>
-          <p class="card-text" *ngFor="let k of spentArray">{{k.user[0].firstName}}: Rs {{k.totalAmountSpent}}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
+    <div class="col-md-2">
+      <div class="row">
+        <!-- <div class="col-md-6"></div>    
+    <div class="col-md-6">
       <button class="btn btn-secondary" [routerLink]="['addexpense']"><i class="fas fa-plus">CreateNewExpense
         </i></button>
 
-    </div>
+    </div> -->
 
+        <div class="col-md-12" *ngIf="users">
+
+          <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Group Users: </div>
+            <div class="card-body">
+              <h5 class="card-title">Users</h5>
+              <p class="card-text" *ngFor="let user of users">{{user.firstName}}</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -54,7 +91,7 @@
     <div class="table-responsive" *ngIf="expenseList">
       <h2 class="edit">Expenses:</h2>
       <table class="table table-bordered">
-        <thead style="background-color:#33847c;color:white">
+        <thead style="background-color:rgb(5, 59, 80);color:white">
           <tr>
             <th class="font" style="text-align:center">ExpenseName</th>
             <th class="font" style="text-align:center">Amount(Rs)</th>

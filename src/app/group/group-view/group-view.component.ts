@@ -16,6 +16,7 @@ export class GroupViewComponent implements OnInit {
   public lentArray=[];
   public spentArray=[];
   public expenseList=[];
+  public totalExpOfGroup;
   constructor(private actRoute: ActivatedRoute, private expenseHttpService: ExpenseHttpService,private groupHttpService:GroupHttpService) { }
 
   ngOnInit() {
@@ -45,8 +46,18 @@ export class GroupViewComponent implements OnInit {
       //console.log('expenses' + apiresponse.data);
      // this.groupName = apiresponse.data.groupName;
       this.spentArray=apiresponse.data;
-      console.log("spent"+this.spentArray)
+      console.log("spent"+this.spentArray);
+      
+      let tA=0;
+      this.spentArray.forEach(ele=>{
+        tA+=ele.totalAmountSpent;
+      })
+      this.totalExpOfGroup=tA;
+
+      console.log("tAAAAAAAA"+tA);
+
     });
+    
   }
 
 

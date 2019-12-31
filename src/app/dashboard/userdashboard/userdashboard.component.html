@@ -2,10 +2,24 @@
 
 </app-layout>
 <br>
+<div class="container">
+<div class="row" style="background-color:rgb(5, 59, 80)">
+  <div class="col-md-10">
+    <h2 class="title">Expense Splitter</h2>
+  </div>
+
+  <div class="col-md-2">
+
+    <button class="btn btn-secondary" [routerLink]="['/creategroup']"><i class="fas fa-plus">CreateNewGroup
+    </i></button>
+
+  </div>
+</div>
+<br>
 
 <div  class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-4" *ngIf="totalAmountLent">
+  <div class="col-md-1"></div>
+  <div class="col-md-3" *ngIf="totalAmountLent">
 
       <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
         <div class="card-header">Amount Lent : </div>
@@ -17,7 +31,7 @@
 
     </div>
 
-    <div class="col-md-4" *ngIf="totalAmountSpent">
+    <div class="col-md-3" *ngIf="totalAmountSpent">
       <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
         <div class="card-header">Amount Spent : </div>
         <div class="card-body">
@@ -26,12 +40,35 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
-
-      <button class="btn btn-secondary" [routerLink]="['/creategroup']"><i class="fas fa-plus">CreateNewGroup
-      </i></button>
-
+    <div class="col-md-3" *ngIf="outStandingAmount">
+    <div *ngIf="isValid;else other_content">
+     
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+          <div class="card-header">Summary Balance : </div>
+          <div class="card-body">
+            <h5 class="card-title">Outstanding Amount</h5>
+            <p class="card-text">You will get Rs {{outStandingAmount}}</p>
+          </div>
+        </div>
+      </div>
+    
+  
+  <ng-template #other_content> 
+    
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+      <div class="card-header">Summary Balance : </div>
+      <div class="card-body">
+        <h5 class="card-title">Outstanding Amount</h5>
+        <p class="card-text">You Owe Rs {{outStandingAmount}}</p>
+      </div>
     </div>
+  
+
+</ng-template>
+</div>
+
+   
+   
   </div>
 
 <div class="container-fluid" style="margin-top:80px">
@@ -39,7 +76,7 @@
   <div class="table-responsive" *ngIf="groups">
     <h2 class="edit">Groups:</h2>
     <table class="table table-bordered">
-      <thead style="background-color:#33847c;color:white">
+      <thead style="background-color:rgb(5, 59, 80);color:white">
         <tr>
           <th class="font" style="text-align:center">GroupTitle</th>
           <th class="font" style="text-align:center">CreatedBy</th>
@@ -73,6 +110,6 @@
   </div>
 </div>
 
-
+</div>
 
   <router-outlet></router-outlet>

@@ -77,7 +77,7 @@ export class AddexpenseComponent implements OnInit {
     this.amountLent=this.expenseAmount/noOfPaidUsers;
 
     this.paidBySelectedUsers.forEach(element => {
-      this.PaidBy.push({user:element,amountLent:this.amountLent})
+      this.PaidBy.push({user:element,amountLent:Math.round(this.amountLent)})
     });
     
 
@@ -86,7 +86,7 @@ export class AddexpenseComponent implements OnInit {
     this.amountSpent=this.expenseAmount/noOfUsersInvolved;
 
     this.usersInvolvedSelected.forEach(element => {
-      this.usersInvolved.push({user:element,amountSpent:this.amountSpent})
+      this.usersInvolved.push({user:element,amountSpent:Math.round(this.amountSpent)})
     });
     
 
