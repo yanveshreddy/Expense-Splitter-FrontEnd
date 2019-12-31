@@ -4,7 +4,7 @@ import { GroupHttpService } from 'src/app/group-http.service';
 import { ExpenseHttpService } from 'src/app/expense-http.service';
 import { CookieService } from 'ng2-cookies';
 import { expenseData } from 'src/app/shared/expenseData';
-
+import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SocketService } from 'src/app/socket.service';
@@ -37,7 +37,7 @@ export class AddexpenseComponent implements OnInit {
  public userId;
   constructor(public groupHttpService: GroupHttpService, public route: Router, 
               public actRoute: ActivatedRoute, public cookieService: CookieService,
-              public expenseHttpService: ExpenseHttpService,public socketService:SocketService
+              public expenseHttpService: ExpenseHttpService,public socketService:SocketService,public toastr:ToastrService
              ) { }
 
               
@@ -89,35 +89,43 @@ export class AddexpenseComponent implements OnInit {
       this.usersInvolved.push({user:element,amountSpent:Math.round(this.amountSpent)})
     });
     
-
-   const expenseData:expenseData = {
-     groupId: this.groupId,
-     expenseTitle:this.expenseTitle,
-     expenseDescription:this.expenseDescription,
-     expenseAmount: this.expenseAmount,
-     createdBy: this.createdBy,
-     paidBy: this.PaidBy,
-     usersInvolved: this.usersInvolved
-   };
-   console.log(expenseData);
-   this.expenseHttpService.createExpense(expenseData).subscribe((apiresponse) => {
-    if (apiresponse) {
-      console.log('createexp api response: ' + apiresponse);
-      // this.socket.init(apiresponse.users[0].socketroom);
-      // this.socket.recvBroadcast();
-    //   let details={
-    //     //adminName:this.adminName,
-    //     userId:this.userId,
-    //  //   expenseId:this.expenseId,
-    //     expenseTitle:this.expenseTitle,
-    //     allGroupUsers:this.allGroupUsers
-    // }
-    // this.socketService.emitCreateNotification(details);
- 
-      this.route.navigate([`/viewgroup/${this.groupId}`]);
+    if(noOfPaidUsers <=0 || noOfUsersInvolved <=0 )
+    {
+      this.toastr.warning('please select dropdowns');
+    }
+    else {
+      const expenseData:expenseData = {
+        groupId: this.groupId,
+        expenseTitle:this.expenseTitle,
+        expenseDescription:this.expenseDescription,
+        expenseAmount: this.expenseAmount,
+        createdBy: this.createdBy,
+        paidBy: this.PaidBy,
+        usersInvolved: this.usersInvolved
+      };
+      console.log(expenseData);
+      this.expenseHttpService.createExpense(expenseData).subscribe((apiresponse) => {
+       if (apiresponse) {
+         console.log('createexp api response: ' + apiresponse);
+         this.toastr.success(apiresponse.message);
+         // this.socket.init(apiresponse.users[0].socketroom);
+         // this.socket.recvBroadcast();
+       //   let details={
+       //     //adminName:this.adminName,
+       //     userId:this.userId,
+       //  //   expenseId:this.expenseId,
+       //     expenseTitle:this.expenseTitle,
+       //     allGroupUsers:this.allGroupUsers
+       // }
+       // this.socketService.emitCreateNotification(details);
+    
+         this.route.navigate([`/viewgroup/${this.groupId}`]);
+       }
+   
+       });
+     }
+   
     }
 
-    });
-  }
-
+  
 }

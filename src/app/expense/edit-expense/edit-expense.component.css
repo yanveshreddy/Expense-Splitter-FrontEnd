@@ -12,6 +12,10 @@
     font-size: 30px; 
   } */
   
+  .buttons{
+    display: flex;
+    flex-direction: row;
+  }
 .edit {
     width:100%;
     text-align:center;   

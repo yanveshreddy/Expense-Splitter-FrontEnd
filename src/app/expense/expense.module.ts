@@ -11,6 +11,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { UserRouteguardService } from '../shared/user-routeguard.service';
 import {MatSelectModule} from '@angular/material';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AddexpenseComponent, EditExpenseComponent, ViewExpenseComponent],
@@ -19,6 +20,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     SharedModule,
     NgxPaginationModule,
+    ToastrModule,
     MatSelectModule,
     RouterModule.forChild([
       {

@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import {MatSelectModule} from '@angular/material';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [CreateGroupComponent, GroupViewComponent],
@@ -20,6 +21,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     SharedModule,
     MatSelectModule,
+    ToastrModule,
     NgxPaginationModule,
     // AppRoutingModule,
     RouterModule.forChild([

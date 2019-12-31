@@ -56,17 +56,17 @@ export class EditExpenseComponent implements OnInit {
       this.expenseTitle = apiresponse.data.expenseTitle;
       this.expenseDescription = apiresponse.data.expenseDescription;
       this.expenseAmount = apiresponse.data.expenseAmount;
-      this.paidBy = apiresponse.data.paidBy;
-      this.usersInvolved = apiresponse.data.usersInvolved;
-      // let paidBySelectedUsers
-      console.log("ExpenseData"+JSON.stringify(this.expenseData))
-      this.paidBy.forEach(ele => {
-        console.log("Ele"+ele)
-        this.paidBySelectedUsers.push(ele.user._id)
-      })
-      this.usersInvolved.forEach(ele => {
-        this.usersInvolvedSelected.push(ele.user._id)
-      })
+    //  // this.paidBy = apiresponse.data.paidBy;
+    //   this.usersInvolved = apiresponse.data.usersInvolved;
+    //   // let paidBySelectedUsers
+    //   console.log("ExpenseData"+JSON.stringify(this.expenseData))
+    //   this.paidBy.forEach(ele => {
+    //     console.log("Ele"+ele)
+    //     this.paidBySelectedUsers.push(ele.user._id)
+    //   })
+    //   this.usersInvolved.forEach(ele => {
+    //     this.usersInvolvedSelected.push(ele.user._id)
+    //   })
       
     this.getSingleGroupDetails(this.groupId);
     this.getAllUsersForGroup(this.groupId);
@@ -93,6 +93,9 @@ export class EditExpenseComponent implements OnInit {
 
   public editExpense = () => {
 
+    this.paidBy=[];
+    this.usersInvolved=[];
+
     let noOfPaidUsers = this.paidBySelectedUsers.length;
 
     this.amountLent = this.expenseAmount / noOfPaidUsers;
@@ -111,10 +114,7 @@ export class EditExpenseComponent implements OnInit {
     this.usersInvolvedSelected.forEach(element => {
       this.usersInvolved.push({ user: element, amountSpent: this.amountSpent })
     });
-
-
-
-     
+ 
       this.expenseData.expenseTitle= this.expenseTitle,
       this.expenseData.expenseDescription= this.expenseDescription,
       this.expenseData.expenseAmount= this.expenseAmount,
@@ -144,7 +144,7 @@ export class EditExpenseComponent implements OnInit {
 
 
         setTimeout(() => {
-          this.router.navigate(['/userdashboard']);
+          this.router.navigate([`/viewgroup/${data.data.groupId}`]);
 
         }, 1000)
 

@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [UserdashboardComponent],
@@ -14,6 +15,7 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     SharedModule,
     NgxPaginationModule,
+    ToastrModule,
     NgbModalModule,
     NgbModule,
     RouterModule.forChild([

@@ -1,7 +1,26 @@
 <app-layout fxLayout="column">
-
+  
+    
 </app-layout>
 <br>
+<div class="container">
+  <div class="row" style="background-color:rgb(5, 59, 80)">
+    <div class="col-md-8">
+      <h2 class="title">{{expenseName}}</h2>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-secondary" [routerLink]="['edit']"><i class="fas fa-edit">EditExpense
+        </i></button>
+
+    </div>
+    <div class="col-md-2">
+    <div class="back"><button class="btn btn-secondary" (click)="goBack()"><i class="fas fa-arrow-left"></i>Back</button>
+    </div>
+  </div>
+    
+    
+  </div>
+  <br>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-3">
@@ -9,8 +28,8 @@
 
         <div class="card-header">Expense Details </div>
         <div class="card-body">
-          <h4 class="card-title">{{expenseName}}</h4>
-          <p class="card-text">Total Amount: Rs{{expenseAmount}}</p>
+          <h4 class="card-title">Total Amount:</h4>
+          <p class="card-text">Rs{{expenseAmount}}</p>
         </div>
 
       </div>
@@ -41,11 +60,7 @@
 
     </div>
 
-        <div class="col-md-2">
-          <button class="btn btn-secondary" [routerLink]="['edit']"><i class="fas fa-edit">EditExpense
-            </i></button>
-    
-        </div>
+        
 </div>
 <div class="row">
   <div class="col-md-2"></div>
@@ -60,7 +75,7 @@
   <div class="table-responsive" >
     <h2 class="edit">Expense History Details:</h2>
     <table class="table table-bordered" *ngIf="expenseHistoryData">
-      <thead style="background-color:#33847c;color:white">
+      <thead style="background-color:rgb(5, 59, 80);color:white">
         <tr>
           <th class="font" style="text-align:center">expenseName</th>
           <th class="font" style="text-align:center">Amount(Rs)</th>
@@ -100,7 +115,7 @@
 </div>
 
 
-<div class="back"><button class="back1" (click)="goBack()"><i class="fas fa-arrow-left"></i>Back</button>
+
 </div>
 <!-- <div>
   <ul>

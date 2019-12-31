@@ -55,24 +55,22 @@
                 </mat-select>
               </mat-form-field>
           </div>
-          <div class="flex-container">
-
-            <div class="back"><button class="back1" (click)="goBack()"><i class="fas fa-arrow-left"></i>Back</button>
-            </div>
-            <div class="edit"><button type="submit" class="butt" [disabled]="!createExpenseForm.valid"><i
-                  class="fas fa-edit"></i>Update</button></div>
-                  <!-- <button type="submit" [disabled]="!createExpenseForm.valid">Submit</button> -->
-            <div class="delete"><button class="butt" (click)="deleteExpense()" class="deletebutton"><i
-                  class="fas fa-trash-alt"></i>Delete</button></div>
-          </div>
          
           </div>
-          <p>
           
-          </p>
+            <div class="edit"><button type="submit" class="butt" [disabled]="!createExpenseForm.valid"><i
+              class="fas fa-edit"></i>Update</button></div>
+          
 
         </form>
-
+        <div class="buttons">
+        <div class="back"><button class="back1" (click)="goBack()"><i class="fas fa-arrow-left"></i>Back</button>
+        </div>
+        
+              <!-- <button type="submit" [disabled]="!createExpenseForm.valid">Submit</button> -->
+        <div class="delete"><button class="butt" (click)="deleteExpense()" class="deletebutton"><i
+              class="fas fa-trash-alt"></i>Delete</button></div>
+            </div>
       </div>
     </div>
 

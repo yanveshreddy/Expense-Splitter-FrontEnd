@@ -56,6 +56,8 @@ export class ExpenseHttpService {
 
     let paidByArray=JSON.stringify(data.paidBy);
     let usersInvolvedArray=JSON.stringify(data.usersInvolved);
+
+      console.log('update data:kkkkkkkkkkkkkkkkkk' + JSON.stringify(data));
   
     const params = new HttpParams()
     .set('expenseTitle', data.expenseTitle )
